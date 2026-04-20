@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#0f172a" />
+<title>Español — Flashcards</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main id="app">
+  <header class="topbar">
+    <div class="brand">Español</div>
+    <div class="stats">
+      <span id="statDue">0 due</span>
+      <span id="statNew">0 new</span>
+      <span id="statStreak">🔥0</span>
+    </div>
+    <button id="menuBtn" class="icon" aria-label="Menu">⋯</button>
+  </header>
+
+  <section id="deckPicker" class="screen">
+    <h1>Study</h1>
+    <p class="muted">Tap a deck to begin. Progress saves on this device.</p>
+    <div id="deckGrid" class="deck-grid"></div>
+    <div class="settings-row">
+      <label><input id="newPerDay" type="number" min="0" max="100" value="15" /> new / day</label>
+      <label><input id="reviewMax" type="number" min="0" max="500" value="120" /> reviews / day</label>
+    </div>
+  </section>
+
+  <section id="study" class="screen hidden">
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="card-wrap">
+      <div id="card" class="card" tabindex="0">
+        <div class="face front">
+          <div class="tag" id="cardTag">word</div>
+          <div class="prompt" id="cardFront">—</div>
+          <div class="hint" id="cardHint"></div>
+          <div class="tap-hint">Tap to reveal</div>
+        </div>
+        <div class="face back hidden">
+          <div class="tag" id="cardTagBack">word</div>
+          <div class="prompt secondary" id="cardFrontBack">—</div>
+          <div class="answer" id="cardBack">—</div>
+          <div class="example" id="cardExample"></div>
+        </div>
+      </div>
+    </div>
+    <div id="rateBar" class="rate-bar hidden">
+      <button class="rate again" data-grade="0"><span>Again</span><small id="lblAgain">1m</small></button>
+      <button class="rate hard" data-grade="1"><span>Hard</span><small id="lblHard">6m</small></button>
+      <button class="rate good" data-grade="2"><span>Good</span><small id="lblGood">10m</small></button>
+      <button class="rate easy" data-grade="3"><span>Easy</span><small id="lblEasy">4d</small></button>
+    </div>
+    <div id="revealBar" class="reveal-bar">
+      <button id="revealBtn" class="reveal">Reveal</button>
+      <button id="speakBtn" class="icon ghost" aria-label="Play">🔊</button>
+      <button id="flipDirBtn" class="icon ghost" aria-label="Flip direction">⇄</button>
+      <button id="skipBtn" class="icon ghost" aria-label="Skip">↷</button>
+    </div>
+    <button id="backHome" class="text-btn">← Decks</button>
+  </section>
+
+  <dialog id="menuDlg">
+    <h3>Menu</h3>
+    <button class="menu-item" data-action="reset-deck">Reset current deck progress</button>
+    <button class="menu-item" data-action="reset-all">Reset all progress</button>
+    <button class="menu-item" data-action="export">Export progress (JSON)</button>
+    <button class="menu-item" data-action="import">Import progress (JSON)</button>
+    <label class="menu-item toggle">
+      <input id="toggleDir" type="checkbox" /> Show English first
+    </label>
+    <label class="menu-item toggle">
+      <input id="toggleAuto" type="checkbox" checked /> Auto-speak Spanish
+    </label>
+    <button class="menu-item close" value="close">Close</button>
+  </dialog>
+
+  <section id="done" class="screen hidden">
+    <h1>¡Bien hecho!</h1>
+    <p class="muted" id="doneMsg">No cards due right now.</p>
+    <button id="doneBack" class="primary">Back to decks</button>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
